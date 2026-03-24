@@ -1,0 +1,29 @@
+<section class="pricing-section" id="pricing">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">Engagement Tiers</span>
+            <h2>Flexible Models for Every Scale</h2>
+            <p>Predictable engineering capacity tailored to your technical roadmap.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <div *ngFor="let plan of plans" class="pricing-card" [class.recommended]="plan.recommended">
+                <div *ngIf="plan.recommended" class="popular-tag">Most Popular</div>
+                <div class="plan-header">
+                    <h3>{{ plan.name }}</h3>
+                    <div class="plan-price">{{ plan.price }}</div>
+                    <p class="plan-desc">{{ plan.desc }}</p>
+                </div>
+                <ul class="plan-features">
+                    <li *ngFor="let feature of plan.features">
+                        <i class="fa-solid fa-check"></i> {{ feature }}
+                    </li>
+                </ul>
+                <a href="#contact" class="btn" [class.btn-primary]="plan.recommended"
+                    [class.btn-secondary]="!plan.recommended">
+                    {{ plan.cta }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

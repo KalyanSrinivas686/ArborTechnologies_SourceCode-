@@ -1,0 +1,33 @@
+<section class="trust-section" id="security">
+    <div class="container">
+        <div class="trust-grid">
+            <div class="trust-content">
+                <span class="badge">Security First</span>
+                <h2>Enterprise-Grade Protection for Every Layer</h2>
+                <p>We don't just build systems; we build fortresses. Our security protocols are integrated directly into
+                    the infrastructure code.</p>
+
+                <div class="cert-grid">
+                    <div *ngFor="let cert of certificates" class="cert-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>{{ cert }}</span>
+                    </div>
+                </div>
+
+                <a href="#contact" class="btn btn-primary">Download Security Whitepaper</a>
+            </div>
+
+            <div class="security-features">
+                <div *ngFor="let item of securityFeatures" class="security-card">
+                    <div class="icon-box">
+                        <i [className]="item.icon"></i>
+                    </div>
+                    <div class="card-info">
+                        <h4>{{ item.title }}</h4>
+                        <p>{{ item.desc }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

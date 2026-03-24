@@ -1,0 +1,35 @@
+<section class="map-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">Global Edge Network</span>
+            <h2>Distributed Infrastructure</h2>
+            <p>Our AI Core and SmartOps nodes are strategically deployed across the globe to ensure sub-100ms latency.
+            </p>
+        </div>
+
+        <div class="map-container">
+            <div class="world-map">
+                <!-- Dots for locations -->
+                <div *ngFor="let node of nodes" class="map-dot" [style.left.%]="node.x" [style.top.%]="node.y">
+                    <div class="dot-inner"></div>
+                    <div class="dot-pulse"></div>
+                    <div class="node-label">
+                        <strong>{{ node.city }}</strong>
+                        <span>{{ node.region }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-stats">
+                <div class="stat-item">
+                    <span class="val">144+</span>
+                    <span class="lab">Edge Points</span>
+                </div>
+                <div class="stat-item">
+                    <span class="val">&lt;85ms</span>
+                    <span class="lab">Avg. Latency</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

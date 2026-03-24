@@ -1,0 +1,27 @@
+<section class="insights-section" id="insights">
+    <div class="container">
+        <div class="section-header">
+            <div class="header-left">
+                <span class="badge">Thought Leadership</span>
+                <h2>Arbor Technologies Insights & Intelligence</h2>
+                <p>Expert analysis on the intersection of Cloud and AI.</p>
+            </div>
+            <button class="btn btn-secondary">View All Insights</button>
+        </div>
+
+        <div class="insights-grid">
+            <div *ngFor="let post of articles" class="insight-card">
+                <div class="card-image">
+                    <img [src]="post.img" [alt]="post.title">
+                    <span class="category-tag">{{ post.category }}</span>
+                </div>
+                <div class="card-body">
+                    <span class="date">{{ post.date }}</span>
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.excerpt }}</p>
+                    <a href="#" class="read-more">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

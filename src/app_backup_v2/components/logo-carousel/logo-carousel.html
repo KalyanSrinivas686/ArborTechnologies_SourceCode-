@@ -1,0 +1,18 @@
+<section class="logo-carousel">
+    <div class="container">
+        <div class="carousel-title">Powering Innovation with Industry Tools</div>
+        <div class="logos-wrapper">
+            <div class="logos-track">
+                <!-- Double the logos for infinite effect -->
+                <div *ngFor="let logo of logos" class="logo-item">
+                    <i [className]="logo.icon"></i>
+                    <span>{{ logo.name }}</span>
+                </div>
+                <div *ngFor="let logo of logos" class="logo-item">
+                    <i [className]="logo.icon"></i>
+                    <span>{{ logo.name }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

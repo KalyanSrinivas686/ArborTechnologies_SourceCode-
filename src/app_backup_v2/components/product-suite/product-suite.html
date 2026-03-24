@@ -1,0 +1,33 @@
+<section class="products-section" id="products">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">Proprietary Tech</span>
+            <h2>The Arbor Intelligence Suite</h2>
+            <p>Our internal tools, repurposed for your global scale. Power your infrastructure with our enterprise-grade
+                software.</p>
+        </div>
+
+        <div class="products-container">
+            <div *ngFor="let product of products" class="product-item">
+                <div class="product-visual">
+                    <div class="visual-circle" [style.background-color]="product.color">
+                        <i [className]="product.icon"></i>
+                    </div>
+                    <div class="visual-glow" [style.background-color]="product.color"></div>
+                </div>
+                <div class="product-content">
+                    <span class="product-tagline">{{ product.tagline }}</span>
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ product.desc }}</p>
+                    <ul class="feature-checklist">
+                        <li *ngFor="let feat of product.features">
+                            <i class="fa-solid fa-circle-check"></i> {{ feat }}
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn btn-link">Request Early Access <i
+                            class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

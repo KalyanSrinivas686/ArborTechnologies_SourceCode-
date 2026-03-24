@@ -1,0 +1,33 @@
+<div class="spotlight-wrapper" *ngIf="isOpen" (click)="closeSearch()">
+    <div class="spotlight-card glass-pane" (click)="$event.stopPropagation()">
+        <div class="spotlight-header">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="spotlight-input" type="text" [(ngModel)]="searchQuery"
+                placeholder="Search infrastructure, products, compliance..." autocomplete="off">
+            <span class="esc-hint">ESC</span>
+        </div>
+
+        <div class="spotlight-body">
+            <div class="recent-label">Quick Navigation</div>
+            <div class="results-list">
+                <a *ngFor="let res of results" [href]="res.link" class="result-item" (click)="closeSearch()">
+                    <div class="res-meta">
+                        <span class="res-category">{{ res.category }}</span>
+                        <span class="res-title">{{ res.title }}</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="spotlight-footer">
+            <span><kbd>↵</kbd> to select</span>
+            <span><kbd>↑↓</kbd> to navigate</span>
+        </div>
+    </div>
+</div>
+
+<div class="search-trigger-hint no-print" (click)="toggleSearch()">
+    <i class="fa-solid fa-terminal"></i>
+    <span>CMD + K</span>
+</div>

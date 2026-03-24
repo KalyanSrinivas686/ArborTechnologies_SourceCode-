@@ -1,0 +1,27 @@
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-card">
+            <div class="newsletter-content">
+                <h2>Stay Ahead of the Curve</h2>
+                <p>Get the latest AI automation insights and cloud optimization tips delivered to your inbox.</p>
+            </div>
+
+            <div class="newsletter-form-wrapper">
+                <form *ngIf="!subscribed" (ngSubmit)="onSubmit()" #newsletterForm="ngForm">
+                    <div class="input-group">
+                        <input type="email" name="email" [(ngModel)]="email" placeholder="Enter your email" required
+                            email>
+                        <button type="submit" [disabled]="!newsletterForm.form.valid || isSubmitting">
+                            {{ isSubmitting ? 'Joining...' : 'Subscribe' }}
+                        </button>
+                    </div>
+                </form>
+
+                <div *ngIf="subscribed" class="success-message">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Check your inbox! You're on the list.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

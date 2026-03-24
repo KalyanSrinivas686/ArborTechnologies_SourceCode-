@@ -1,0 +1,51 @@
+<section class="calculator-section" id="calculator">
+    <div class="container text-center">
+        <div class="calculator-header">
+            <span class="badge">ROI Calculator</span>
+            <h2>Calculate Your Cloud Savings</h2>
+            <p>Discover how much you can save by optimizing your infrastructure with Arbor Technologies SmartOps.</p>
+        </div>
+
+        <div class="calculator-card">
+            <div class="calculator-grid">
+                <div class="controls">
+                    <div class="control-group">
+                        <label>Monthly Cloud Spend ($)</label>
+                        <div class="input-wrapper">
+                            <input type="range" min="1000" max="100000" step="500" [(ngModel)]="monthlySpend">
+                            <span class="value">${{ monthlySpend | number }}</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Infrastructure Complexity</label>
+                        <div class="complexity-buttons">
+                            <button [class.active]="complexity === 1" (click)="complexity = 1">Simple</button>
+                            <button [class.active]="complexity === 2" (click)="complexity = 2">Moderate</button>
+                            <button [class.active]="complexity === 3" (click)="complexity = 3">Complex</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Current Automation Level ({{ automationLevel }}%)</label>
+                        <input type="range" min="0" max="100" step="10" [(ngModel)]="automationLevel">
+                    </div>
+                </div>
+
+                <div class="results">
+                    <div class="result-header">
+                        <h3>Estimated Annual Savings</h3>
+                    </div>
+                    <div class="savings-value">
+                        ${{ calculateSavings() * 12 | number }}
+                    </div>
+                    <div class="efficiency-badge" [ngClass]="getEfficiencyScore().toLowerCase().replace(' ', '-')">
+                        {{ getEfficiencyScore() }}
+                    </div>
+                    <p class="disclaimer">*Estimates based on typical Arbor Technologies optimization benchmarks.</p>
+                    <a href="#contact" class="btn btn-primary w-100 mt-4">Get Detailed Audit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

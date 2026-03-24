@@ -1,0 +1,49 @@
+<div class="chatbot-container" [class.open]="isOpen">
+    <!-- Float Button -->
+    <button class="chat-toggle-btn" (click)="toggleChat()">
+        <i [className]="isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-robot'"></i>
+        <span *ngIf="!isOpen" class="ping"></span>
+    </button>
+
+    <!-- Chat Window -->
+    <div class="chat-window">
+        <div class="chat-header">
+            <div class="bot-info">
+                <div class="avatar">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div>
+                    <h4>Arbor Technologies AI Assistant</h4>
+                    <span class="status">Always Active</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-history" #scrollMe>
+            <div *ngFor="let msg of messages" class="message-row" [class.user]="msg.type === 'user'">
+                <div class="message-bubble">
+                    {{ msg.text }}
+                </div>
+            </div>
+            <div *ngIf="isTyping" class="message-row">
+                <div class="message-bubble typing">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-footer">
+            <div class="quick-actions" *ngIf="messages.length < 4">
+                <button *ngFor="let action of quickActions" (click)="handleQuickAction(action)">
+                    {{ action }}
+                </button>
+            </div>
+            <form (ngSubmit)="sendMessage()" class="input-area">
+                <input name="chatInput" [(ngModel)]="userInput" placeholder="Ask anything..." autocomplete="off">
+                <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+</div>

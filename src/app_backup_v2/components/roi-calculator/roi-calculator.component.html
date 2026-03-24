@@ -1,0 +1,64 @@
+<section class="roi-calculator" id="roi-calculator">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="badge">Calculate Your Savings</span>
+      <h2>ROI Calculator</h2>
+      <p>See how much you can save with our DevOps and cloud optimization services.</p>
+    </div>
+    
+    <div class="calculator-container">
+      <div class="calculator-form">
+        <div class="form-group">
+          <label for="monthly-spend">Current Monthly Cloud Spend (₹)</label>
+          <input type="number" id="monthly-spend" [(ngModel)]="monthlySpend" (input)="onInputChange()" placeholder="50000">
+        </div>
+        
+        <div class="form-group">
+          <label for="team-size">DevOps Team Size</label>
+          <select id="team-size" [(ngModel)]="teamSize" (change)="onInputChange()">
+            <option value="0">No dedicated team</option>
+            <option value="1">1-2 engineers</option>
+            <option value="3">3-5 engineers</option>
+            <option value="6">6+ engineers</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="downtime-hours">Monthly Downtime Hours</label>
+          <input type="number" id="downtime-hours" [(ngModel)]="downtimeHours" (input)="onInputChange()" placeholder="4">
+        </div>
+        
+        <button class="btn btn-primary" (click)="calculateROI()">Calculate Savings</button>
+      </div>
+      
+      <div class="calculator-results" id="results">
+        <div class="result-card">
+          <div class="result-icon">💰</div>
+          <div class="result-content">
+            <h3>Monthly Savings</h3>
+            <div class="result-value">₹{{ monthlySavings | number:'0.0-0' }}</div>
+            <p>Cost optimization</p>
+          </div>
+        </div>
+        
+        <div class="result-card">
+          <div class="result-icon">⚡</div>
+          <div class="result-content">
+            <h3>Revenue Protection</h3>
+            <div class="result-value">₹{{ revenueProtection | number:'0.0-0' }}</div>
+            <p>Downtime prevention</p>
+          </div>
+        </div>
+        
+        <div class="result-card">
+          <div class="result-icon">🚀</div>
+          <div class="result-content">
+            <h3>Annual ROI</h3>
+            <div class="result-value">{{ annualRoi | number:'0.0-0' }}%</div>
+            <p>Return on investment</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

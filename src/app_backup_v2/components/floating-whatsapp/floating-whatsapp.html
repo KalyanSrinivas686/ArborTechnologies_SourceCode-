@@ -1,0 +1,41 @@
+<div class="floating-whatsapp">
+    <div class="whatsapp-bubble" *ngIf="isExpanded">
+        <div class="bubble-header">
+            <div class="bubble-avatar">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div class="bubble-info">
+                <h4>Arbor Technologies</h4>
+                <p>Typically replies within minutes</p>
+            </div>
+            <button class="close-btn" (click)="toggleChat()">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        <div class="bubble-content">
+            <p class="greeting">Hi! 👋 How can we help you today?</p>
+            <div class="quick-actions">
+                <button class="quick-btn" (click)="openWhatsApp('I need a free consultation')">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Free Consultation
+                </button>
+                <button class="quick-btn" (click)="openWhatsApp('I want a quick quote')">
+                    <i class="fa-solid fa-calculator"></i>
+                    Get Quick Quote
+                </button>
+                <button class="quick-btn" (click)="openWhatsApp('Tell me about your services')">
+                    <i class="fa-solid fa-info-circle"></i>
+                    Learn More
+                </button>
+            </div>
+            <button class="chat-btn" (click)="openWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i>
+                Start Chat
+            </button>
+        </div>
+    </div>
+    <button class="whatsapp-button" (click)="toggleChat()" [class.expanded]="isExpanded">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="pulse-ring"></span>
+    </button>
+</div>

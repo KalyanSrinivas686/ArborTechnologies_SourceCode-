@@ -1,0 +1,70 @@
+<section class="duel-section" id="architecture">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">Technical Deep-Dive</span>
+            <h2>Choose Your Foundation</h2>
+            <p>Compare the two dominant architectures for modern AI and Cloud applications.</p>
+        </div>
+
+        <div class="duel-container">
+            <div class="duel-switcher">
+                <button [class.active]="activeMode === 'serverless'" (click)="setMode('serverless')">Serverless</button>
+                <button [class.active]="activeMode === 'kubernetes'" (click)="setMode('kubernetes')">Kubernetes</button>
+            </div>
+
+            <div class="duel-display">
+                <!-- Visual Diagram Placeholder -->
+                <div class="duel-visual">
+                    <div class="infra-nodes">
+                        <div *ngFor="let item of (activeMode === 'serverless' ? serverless.infra : kubernetes.infra)"
+                            class="node">
+                            <i class="fa-solid fa-cube"></i>
+                            <span>{{ item }}</span>
+                        </div>
+                        <div class="flow-line"></div>
+                    </div>
+                </div>
+
+                <div class="duel-content">
+                    <div class="duel-text">
+                        <h3>{{ activeMode === 'serverless' ? serverless.title : kubernetes.title }}</h3>
+                        <p>{{ activeMode === 'serverless' ? serverless.subtitle : kubernetes.subtitle }}</p>
+                    </div>
+
+                    <div class="duel-scores">
+                        <div class="score-row">
+                            <label>Cost Efficiency</label>
+                            <div class="bar">
+                                <div
+                                    [style.width.%]="activeMode === 'serverless' ? serverless.stats.cost : kubernetes.stats.cost">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="score-row">
+                            <label>Release Speed</label>
+                            <div class="bar">
+                                <div
+                                    [style.width.%]="activeMode === 'serverless' ? serverless.stats.speed : kubernetes.stats.speed">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="score-row">
+                            <label>Maintenance Load</label>
+                            <div class="bar-neg">
+                                <div
+                                    [style.width.%]="activeMode === 'serverless' ? serverless.stats.complexity : kubernetes.stats.complexity">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="duel-pros">
+                        <li *ngFor="let pro of (activeMode === 'serverless' ? serverless.pros : kubernetes.pros)">
+                            <i class="fa-solid fa-circle-check"></i> {{ pro }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

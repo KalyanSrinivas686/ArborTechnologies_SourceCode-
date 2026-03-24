@@ -1,0 +1,31 @@
+<section class="advantage-section" id="advantage">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">The Advantage</span>
+            <h2>Why Leading Teams Choose Arbor</h2>
+            <p>Our AI-First approach isn't just a label—it's a massive competitive leap in speed and reliability.</p>
+        </div>
+
+        <div class="comparison-container">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th class="feature-head">Capability</th>
+                        <th class="old-head">Traditional IT Vendors</th>
+                        <th class="new-head">Arbor Technologies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of rows">
+                        <td class="f-col">{{ row.feature }}</td>
+                        <td class="t-col">{{ row.traditional }}</td>
+                        <td class="a-col">
+                            <i class="fa-solid fa-bolt-lightning"></i>
+                            {{ row.arbor }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

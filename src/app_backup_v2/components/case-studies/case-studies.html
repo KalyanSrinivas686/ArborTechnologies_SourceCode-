@@ -1,0 +1,95 @@
+<section class="case-studies" id="cases">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">Evidence of Excellence</span>
+            <h2>Transformation Stories</h2>
+            <p>Real-world impact delivered through cloud-native innovation.</p>
+        </div>
+
+        <div class="cases-wrapper">
+            <article *ngFor="let item of cases" class="case-study-block" [class.reverse]="item.theme === 'cloud'">
+                <div class="case-hero">
+                    <span class="case-tag">POC Showcase</span>
+                    <h3>{{ item.title }}</h3>
+                    <h4>{{ item.subtitle }}</h4>
+                    <p class="overview">{{ item.overview }}</p>
+                </div>
+
+                <div class="case-details">
+                    <div class="detail-grid">
+                        <div class="detail-column">
+                            <h5>Problem Statement</h5>
+                            <ul class="custom-list">
+                                <li *ngFor="let point of item.problemStatement">{{ point }}</li>
+                            </ul>
+                        </div>
+                        <div class="detail-column">
+                            <h5>Solution Delivered</h5>
+                            <ul class="custom-list check">
+                                <li *ngFor="let point of item.solutionDelivered">{{ point }}</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack-panel">
+                        <h5>Architecture & Technology Stack</h5>
+                        <div class="tech-grid">
+                            <div *ngFor="let tech of item.architecture" class="tech-item">
+                                <span class="tech-label">{{ tech.label }}</span>
+                                <span class="tech-value">{{ tech.value }}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Architecture Diagram Preview -->
+                        <div class="architecture-preview">
+                            <h6>Architecture Diagram</h6>
+                            <div class="diagram-preview">
+                                <img [src]="'images/' + (item.id === 'food-coupon' ? 'infrastructure.png' : item.id === 'smartops' ? 'cloud.png' : item.id === 'ecommerce-platform' ? 'devops.png' : item.id === 'fintech-api' ? 'ai.png' : 'infrastructure.png')" 
+                                     [alt]="'Architecture diagram for ' + item.title"
+                                     class="diagram-image">
+                                <div class="diagram-overlay">
+                                    <button class="download-diagram-btn" (click)="downloadDiagram(item.id)">
+                                        <i class="fa-solid fa-download"></i>
+                                        Download Diagram
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-grid">
+                        <div class="detail-column">
+                            <h5>Business Impact</h5>
+                            <ul class="custom-list impact">
+                                <li *ngFor="let point of item.businessImpact">{{ point }}</li>
+                            </ul>
+                        </div>
+                        <div class="detail-column">
+                            <h5>What This Demonstrates</h5>
+                            <ul class="custom-list star">
+                                <li *ngFor="let point of item.demonstrates">{{ point }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Call To Action Block -->
+        <div class="cta-block">
+            <div class="cta-content">
+                <h3>Looking to modernize your infrastructure or automate operational workflows?</h3>
+                <p>Contact Arbor Technologies to discuss how we can design a scalable, cloud-native solution for your
+                    business.</p>
+                <div class="cta-actions">
+                    <a href="mailto:arbortech.cloud@gmail.com" class="cta-btn primary">
+                        <i class="fa-solid fa-envelope"></i> arbortech.cloud@gmail.com
+                    </a>
+                    <a href="tel:+919121650564" class="cta-btn secondary">
+                        <i class="fa-solid fa-phone"></i> +91 9121650564
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

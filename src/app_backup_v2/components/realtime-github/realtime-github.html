@@ -1,0 +1,52 @@
+<section class="realtime-github section" id="realtime-github">
+    <div class="container">
+        <div class="section-header">
+            <div class="badge">LIVE DATA</div>
+            <h2>Real-Time GitHub Activity Monitor</h2>
+            <p class="section-subtitle">Live activity feed from popular open-source repositories - Updates every 30 seconds</p>
+        </div>
+
+        <div *ngIf="loading" class="loading-state">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            <p>Fetching real-time GitHub activity...</p>
+        </div>
+
+        <div *ngIf="error" class="error-state">
+            <i class="fa-solid fa-exclamation-triangle"></i>
+            <p>{{ error }}</p>
+        </div>
+
+        <div *ngIf="!loading && !error && activities.length > 0" class="activities-list">
+            <div *ngFor="let activity of activities" class="activity-card">
+                <div class="activity-header">
+                    <div class="activity-author">
+                        <img [src]="activity.avatar || 'https://github.com/identicons/app.png'" 
+                             [alt]="activity.author" 
+                             class="avatar" 
+                             onerror="this.src='https://github.com/identicons/app.png'" />
+                        <div>
+                            <div class="author-name">{{ activity.author }}</div>
+                            <div class="activity-time">{{ getTimeAgo(activity.timestamp) }}</div>
+                        </div>
+                    </div>
+                    <div class="activity-type">
+                        <i [class]="'fa-solid ' + getEventIcon(activity.type)"></i>
+                    </div>
+                </div>
+                
+                <div class="activity-content">
+                    <div class="activity-message">
+                        <i [class]="'fa-solid ' + getEventIcon(activity.type)"></i>
+                        <span>{{ activity.message }}</span>
+                    </div>
+                    <div class="activity-repo">
+                        <i class="fa-brands fa-github"></i>
+                        <a [href]="activity.url" target="_blank" rel="noopener noreferrer">
+                            {{ activity.repo }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

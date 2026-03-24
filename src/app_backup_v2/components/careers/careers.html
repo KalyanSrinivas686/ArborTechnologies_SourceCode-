@@ -1,0 +1,31 @@
+<section class="careers-section" id="careers">
+    <div class="container">
+        <div class="cta-banner">
+            <div class="cta-content">
+                <span class="badge secondary">Join the Core</span>
+                <h2>Help us build the future of Intelligent Infrastructure.</h2>
+                <p>We are always looking for visionary engineers and innovative architects to join our global
+                    distributed team.</p>
+
+                <div class="jobs-list">
+                    <div *ngFor="let job of jobs" class="job-item">
+                        <div class="job-info">
+                            <h4>{{ job.title }}</h4>
+                            <div class="job-meta">
+                                <span><i class="fa-solid fa-briefcase"></i> {{ job.dept }}</span>
+                                <span><i class="fa-solid fa-location-dot"></i> {{ job.location }}</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-micro">Apply Now</button>
+                    </div>
+                </div>
+
+                <div class="culture-stats">
+                    <div class="c-stat"><strong>Remote-First</strong> Culture</div>
+                    <div class="c-stat"><strong>Unlimited</strong> Growth</div>
+                    <div class="c-stat"><strong>Cutting-Edge</strong> Stack</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

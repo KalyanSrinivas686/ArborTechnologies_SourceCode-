@@ -1,0 +1,17 @@
+/* App-specific styles */
+@import url('./components/floating-contact/floating-contact.component.css');
+@import url('./components/blog-resources/blog-resources.component.css');
+@import url('./components/pricing/pricing.component.css');
+@import url('./components/roi-calculator/roi-calculator.component.css');
+@import url('./components/faq/faq.component.css');
+@import url('./components/trust-indicators/trust-indicators.component.css');
+@import url('./components/live-chat/live-chat.component.css');
+@import url('./components/animated-stats/animated-stats.component.css');
+@import url('./components/notification-banner/notification-banner.component.css');
+@import url('./components/tech-insights/tech-insights.component.css');
+@import url('./components/success-metrics/success-metrics.component.css');
+@import url('./components/technical-capabilities/technical-capabilities.component.css');
+
+html {
+    scroll-behavior: smooth;
+}

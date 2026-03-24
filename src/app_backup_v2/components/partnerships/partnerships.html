@@ -1,0 +1,29 @@
+<section class="partners-section" id="partners">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">Ecosystem</span>
+            <h2>Integrated with the Best</h2>
+            <p>Arbor Technologies works seamlessly with your existing tech stack to deliver unified performance.</p>
+        </div>
+
+        <div class="partners-grid">
+            <div *ngFor="let partner of partners" class="partner-card">
+                <div class="partner-icon">
+                    <i [className]="partner.icon"></i>
+                </div>
+                <div class="partner-info">
+                    <h4>{{ partner.name }}</h4>
+                    <p>{{ partner.role }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="integration-banner">
+            <div class="banner-text">
+                <h3>Native Integrations for 50+ Enterprise Tools</h3>
+                <p>Don't see your stack? Our team builds custom connectors in days, not weeks.</p>
+            </div>
+            <a href="#contact" class="btn btn-primary">Request Integration</a>
+        </div>
+    </div>
+</section>

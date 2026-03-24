@@ -1,0 +1,41 @@
+<section class="infra-section" id="network">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">Global Reach</span>
+            <h2>Arbor Backbone Infrastructure</h2>
+            <p>Our distributed AI mesh covers 24+ global nodes with sub-20ms lateral latency.</p>
+        </div>
+
+        <div class="map-container">
+            <svg class="world-svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
+                <!-- Simplified World Map Path (Mock) -->
+                <path d="M150,150 Q250,120 350,180 T550,150 T850,200" stroke="rgba(37, 99, 235, 0.1)" fill="none"
+                    stroke-width="2" />
+                <rect x="0" y="0" width="1000" height="500" fill="transparent" />
+
+                <g *ngFor="let region of regions" [style.transform]="'translate(' + region.x + ',' + region.y + ')'">
+                    <circle r="8" fill="var(--primary-color)" class="pulse-point" />
+                    <circle r="15" fill="var(--primary-color)" fill-opacity="0.1" class="pulse-ring" />
+
+                    <foreignObject x="20" y="-30" width="180" height="80">
+                        <div class="region-label glass-pane">
+                            <strong>{{ region.name }}</strong>
+                            <span>{{ region.status }} • {{ region.delay }}</span>
+                        </div>
+                    </foreignObject>
+                </g>
+            </svg>
+
+            <div class="network-stats-overlay">
+                <div class="stat-card">
+                    <strong>99.999%</strong>
+                    <span>Core Uptime</span>
+                </div>
+                <div class="stat-card">
+                    <strong>1.2 Tbps</strong>
+                    <span>Edge Bandwidth</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

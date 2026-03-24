@@ -1,0 +1,30 @@
+<section class="careers-section" id="careers">
+    <div class="container">
+        <div class="careers-grid">
+            <div class="careers-info">
+                <span class="badge">Join the Elite</span>
+                <h2>Build the Future of Autonomous Systems</h2>
+                <p>We are looking for the top 1% of engineering talent to push the boundaries of what AI can do for
+                    global infrastructure.</p>
+                <div class="perks">
+                    <div class="perk"><i class="fa-solid fa-earth-americas"></i> Remote-First Culture</div>
+                    <div class="perk"><i class="fa-solid fa-rocket"></i> Early Stage Equity</div>
+                    <div class="perk"><i class="fa-solid fa-brain"></i> AI-First Tools</div>
+                </div>
+            </div>
+
+            <div class="roles-list">
+                <div *ngFor="let role of roles" class="role-card">
+                    <div class="role-meta">
+                        <h4>{{ role.title }}</h4>
+                        <span>{{ role.location }} • {{ role.type }}</span>
+                    </div>
+                    <a href="#contact" class="apply-btn">View Role <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+                <div class="careers-footer">
+                    <p>Don't see your fit? <a href="#contact">Send a general application</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

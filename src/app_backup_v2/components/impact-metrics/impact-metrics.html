@@ -1,0 +1,15 @@
+<section class="impact-section" (mouseenter)="startCount()">
+    <div class="container">
+        <div class="impact-grid">
+            <div *ngFor="let metric of metrics; let i = index" class="metric-card card">
+                <div class="metric-icon">
+                    <i [className]="metric.icon"></i>
+                </div>
+                <div class="metric-value">
+                    <span class="count">{{ displayValues[i] }}</span>{{ metric.suffix }}
+                </div>
+                <div class="metric-label">{{ metric.label }}</div>
+            </div>
+        </div>
+    </div>
+</section>

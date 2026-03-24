@@ -1,0 +1,47 @@
+<section class="realtime-crypto section" id="realtime-crypto">
+    <div class="container">
+        <div class="section-header">
+            <div class="badge">LIVE DATA</div>
+            <h2>Real-Time Cryptocurrency Prices</h2>
+            <p class="section-subtitle">Live market data from CoinGecko API - Updates every 10 seconds</p>
+            <div class="last-update" *ngIf="lastUpdate">
+                <i class="fa-solid fa-clock"></i>
+                Last updated: {{ lastUpdate | date:'short' }}
+            </div>
+        </div>
+
+        <div *ngIf="loading" class="loading-state">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            <p>Fetching real-time cryptocurrency prices...</p>
+        </div>
+
+        <div *ngIf="error" class="error-state">
+            <i class="fa-solid fa-exclamation-triangle"></i>
+            <p>{{ error }}</p>
+        </div>
+
+        <div *ngIf="!loading && !error && cryptoPrices.length > 0" class="crypto-grid">
+            <div *ngFor="let crypto of cryptoPrices" class="crypto-card">
+                <div class="crypto-header">
+                    <div class="crypto-info">
+                        <img [src]="crypto.image" [alt]="crypto.name" class="crypto-icon" />
+                        <div>
+                            <h3>{{ crypto.name }}</h3>
+                            <span class="crypto-symbol">{{ crypto.symbol }}</span>
+                        </div>
+                    </div>
+                    <div class="price-change" [style.color]="getChangeColor(crypto.price_change_percentage_24h)">
+                        <i [class]="'fa-solid fa-arrow-' + (crypto.price_change_percentage_24h >= 0 ? 'up' : 'down')"></i>
+                        {{ crypto.price_change_percentage_24h >= 0 ? '+' : '' }}{{ crypto.price_change_percentage_24h.toFixed(2) }}%
+                    </div>
+                </div>
+                <div class="crypto-price">
+                    {{ formatPrice(crypto.current_price) }}
+                </div>
+                <div class="crypto-marketcap">
+                    Market Cap: {{ formatMarketCap(crypto.market_cap) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

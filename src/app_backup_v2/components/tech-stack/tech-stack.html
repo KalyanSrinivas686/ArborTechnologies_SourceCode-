@@ -1,0 +1,32 @@
+<section class="tech-stack-section" id="stack">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">Technical Ecosystem</span>
+            <h2>Our Technology Stack</h2>
+            <p>We leverage industry-leading tools and platforms to build, deploy, and scale your intelligent
+                infrastructure.</p>
+        </div>
+
+        <div class="tech-grid">
+            <div *ngFor="let cat of techCategories" class="tech-category">
+                <h3>{{ cat.title }}</h3>
+                <div class="tools-list">
+                    <div *ngFor="let tool of cat.tools" class="tool-item">
+                        <div class="tool-icon">
+                            <i [className]="tool.icon"></i>
+                        </div>
+                        <span>{{ tool.name }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-banner">
+            <div class="banner-content">
+                <h3>Ready to modernize your tech stack?</h3>
+                <p>Our experts will help you choose the right tools for your specific business needs.</p>
+            </div>
+            <a href="#contact" class="btn btn-outline-white">Free Tech Audit</a>
+        </div>
+    </div>
+</section>

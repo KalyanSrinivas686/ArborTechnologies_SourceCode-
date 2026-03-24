@@ -1,0 +1,34 @@
+<section class="faq-section" id="faq">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">Common Questions</span>
+            <h2>Clarity for Your Journey</h2>
+            <div class="faq-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input [(ngModel)]="searchQuery" placeholder="Search by topic (AI, Security, Process)...">
+            </div>
+        </div>
+
+        <div class="faq-container">
+            <div *ngFor="let item of filteredFaqs" class="faq-item" [class.open]="item.open">
+                <div class="faq-question" (click)="toggle(item)">
+                    <div class="q-content">
+                        <span class="category-pill">{{ item.category }}</span>
+                        <h4>{{ item.q }}</h4>
+                    </div>
+                    <div class="faq-toggle">
+                        <i class="fa-solid" [class.fa-plus]="!item.open" [class.fa-minus]="item.open"></i>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>{{ item.a }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-footer text-center">
+            <p>Have a different question?</p>
+            <a href="#contact" class="btn btn-primary">Message Our Architects</a>
+        </div>
+    </div>
+</section>

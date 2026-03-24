@@ -1,0 +1,21 @@
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="badge">Common Questions</span>
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything you need to know about our services.</p>
+    </div>
+    
+    <div class="faq-grid">
+      <div class="faq-item" [class.active]="item.isOpen" *ngFor="let item of faqItems; let i = index">
+        <div class="faq-question" (click)="toggleFAQ(i)">
+          <h4>{{ item.question }}</h4>
+          <i class="fas fa-chevron-down" [class.rotated]="item.isOpen"></i>
+        </div>
+        <div class="faq-answer" [class.active]="item.isOpen">
+          <p>{{ item.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

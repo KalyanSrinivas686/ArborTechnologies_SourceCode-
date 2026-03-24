@@ -1,0 +1,21 @@
+<section class="verticals-section" id="sectors">
+    <div class="container">
+        <div class="section-header">
+            <div class="header-left">
+                <span class="badge">Specialized Solutions</span>
+                <h2>Adaptive Architectures for Your Sector</h2>
+            </div>
+            <p class="header-text">We don't just build cloud systems; we build solutions that respect your industry's
+                unique constraints and regulations.</p>
+        </div>
+
+        <div class="verticals-grid">
+            <div *ngFor="let item of verticals" class="vertical-card">
+                <div class="v-icon"><i [className]="item.icon"></i></div>
+                <h3>{{ item.title }}</h3>
+                <div class="v-focus"><strong>Primary Focus:</strong> {{ item.focus }}</div>
+                <p>{{ item.benefit }}</p>
+            </div>
+        </div>
+    </div>
+</section>

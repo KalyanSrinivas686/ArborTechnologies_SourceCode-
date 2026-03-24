@@ -1,0 +1,69 @@
+<section class="realtime-weather section" id="realtime-weather">
+    <div class="container">
+        <div class="section-header">
+            <div class="badge">LIVE DATA</div>
+            <h2>Real-Time Global Weather Monitoring</h2>
+            <p class="section-subtitle">Live weather data from OpenWeatherMap API - Updates every 5 minutes</p>
+        </div>
+
+        <div *ngIf="loading" class="loading-state">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            <p>Fetching real-time weather data...</p>
+        </div>
+
+        <div *ngIf="error" class="error-state">
+            <i class="fa-solid fa-exclamation-triangle"></i>
+            <p>{{ error }}</p>
+        </div>
+
+        <div *ngIf="!loading && !error && weatherData.length > 0" class="weather-grid">
+            <div *ngFor="let weather of weatherData" class="weather-card">
+                <div class="weather-header">
+                    <div>
+                        <h3>{{ weather.city }}</h3>
+                        <span class="country">{{ weather.country }}</span>
+                    </div>
+                    <i [class]="'fa-solid ' + getWeatherIcon(weather.description)" class="weather-icon-fa"></i>
+                </div>
+                
+                <div class="temperature">
+                    <span class="temp-value">{{ weather.temperature }}°</span>
+                    <span class="temp-unit">C</span>
+                </div>
+                
+                <div class="weather-description">
+                    <i [class]="'fa-solid ' + getWeatherIcon(weather.description)"></i>
+                    <span>{{ weather.description | titlecase }}</span>
+                </div>
+
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <i class="fa-solid fa-temperature-half"></i>
+                        <span>Feels like: {{ weather.feelsLike }}°C</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-solid fa-droplet"></i>
+                        <span>Humidity: {{ weather.humidity }}%</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-solid fa-wind"></i>
+                        <span>Wind: {{ weather.windSpeed }} km/h</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-solid fa-gauge"></i>
+                        <span>Pressure: {{ weather.pressure }} hPa</span>
+                    </div>
+                    <div class="detail-item" *ngIf="weather.visibility">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>Visibility: {{ weather.visibility }} km</span>
+                    </div>
+                </div>
+
+                <div class="last-updated">
+                    <i class="fa-solid fa-clock"></i>
+                    Updated: {{ weather.lastUpdated | date:'short' }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

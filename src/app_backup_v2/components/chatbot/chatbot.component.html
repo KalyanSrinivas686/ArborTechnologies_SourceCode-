@@ -1,0 +1,70 @@
+<div class="chatbot-container">
+  <!-- Chat Toggle Button -->
+  <button class="chatbot-toggle" (click)="toggleChat()" [class.active]="isOpen">
+    <i class="fas fa-comments"></i>
+    <span class="chat-badge">Chat</span>
+  </button>
+
+  <!-- Chat Window -->
+  <div class="chatbot-window" [class.open]="isOpen">
+    <div class="chatbot-header">
+      <div class="chatbot-info">
+        <div class="chatbot-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="chatbot-details">
+          <h4>Arbor Assistant</h4>
+          <span class="status">Online</span>
+        </div>
+      </div>
+      <button class="close-btn" (click)="toggleChat()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="chatbot-messages">
+      <div class="message bot-message">
+        <div class="message-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="message-content">
+          <p>Hello! I'm Arbor Assistant. How can I help you with your cloud infrastructure and DevOps needs today?</p>
+        </div>
+      </div>
+
+      <div *ngFor="let msg of messages" class="message" [class.user-message]="msg.isUser" [class.bot-message]="!msg.isUser">
+        <div class="message-avatar" *ngIf="!msg.isUser">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="message-content">
+          <p>{{ msg.text }}</p>
+        </div>
+        <div class="message-avatar" *ngIf="msg.isUser">
+          <i class="fas fa-user"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="chatbot-input">
+      <div class="input-container">
+        <input 
+          type="text" 
+          [(ngModel)]="currentMessage" 
+          (keypress)="onKeyPress($event)"
+          placeholder="Type your message..."
+          class="message-input"
+        >
+        <button (click)="sendMessage()" class="send-btn" [disabled]="!currentMessage.trim()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+      <div class="quick-actions">
+        <button class="quick-action-btn" (click)="currentMessage = 'Tell me about your DevOps services'">DevOps Services</button>
+        <button class="quick-action-btn" (click)="currentMessage = 'What cloud platforms do you support?'">Cloud Platforms</button>
+        <button class="quick-action-btn" (click)="currentMessage = 'How can you optimize my cloud costs?'">Cost Optimization</button>
+        <button class="quick-action-btn" (click)="currentMessage = 'What security services do you offer?'">Security Services</button>
+        <button class="quick-action-btn" (click)="currentMessage = 'I want a free infrastructure health check'">Free Health Check</button>
+      </div>
+    </div>
+  </div>
+</div>

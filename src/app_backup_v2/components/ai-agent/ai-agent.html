@@ -1,0 +1,41 @@
+<div class="ai-agent-wrapper no-print" [class.active]="isOpen">
+    <div class="chat-window-container glass-pane" *ngIf="isOpen">
+        <div class="chat-header">
+            <div class="bot-profile">
+                <div class="bot-avatar">
+                    <i class="fa-solid fa-brain"></i>
+                    <span class="online-pulse"></span>
+                </div>
+                <div class="bot-info">
+                    <h4>Arbor Intelligence</h4>
+                    <span>Active Now</span>
+                </div>
+            </div>
+            <button class="close-btn" (click)="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="chat-body" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+            <div *ngFor="let msg of messages" class="message-row" [class.user]="msg.role === 'user'">
+                <div class="message-bubble">
+                    {{ msg.text }}
+                </div>
+            </div>
+            <!-- Typing Indicator -->
+            <div class="message-row" *ngIf="isTyping">
+                <div class="message-bubble typing">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" [(ngModel)]="input" (keyup.enter)="sendMessage()" placeholder="Type a message...">
+            <button (click)="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <button class="chatbot-trigger shadow-premium" (click)="toggleChat()" [class.open]="isOpen">
+        <i class="fa-solid" [class.fa-robot]="!isOpen" [class.fa-minus]="isOpen"></i>
+        <span class="trigger-label" *ngIf="!isOpen">Talk to AI</span>
+    </button>
+</div>

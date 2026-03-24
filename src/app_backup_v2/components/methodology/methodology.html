@@ -1,0 +1,31 @@
+<section class="methodology-section" id="methodology">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">The Arbor Technologies Framework</span>
+            <h2>How We Drive Transformation</h2>
+            <p>Our unique 4-phase methodology is designed to take your infrastructure from legacy to legendary.</p>
+        </div>
+
+        <div class="methodology-grid">
+            <div *ngFor="let step of steps" class="method-card">
+                <div class="step-header">
+                    <div class="step-number">{{ step.id }}</div>
+                    <div class="step-icon">
+                        <i [className]="step.icon"></i>
+                    </div>
+                </div>
+                <h3>{{ step.title }}</h3>
+                <span class="subtitle">{{ step.subtitle }}</span>
+                <p>{{ step.description }}</p>
+                <div class="connector"></div>
+            </div>
+        </div>
+
+        <div class="method-footer text-center mt-5">
+            <div class="guarantee-badge">
+                <i class="fa-solid fa-certificate"></i>
+                Accelerated 4-Step Journey to Production
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,34 @@
+<section class="compliance-section" id="compliance">
+    <div class="container">
+        <div class="compliance-header text-center">
+            <span class="badge">Security First</span>
+            <h2>Enterprise Compliance & Standards</h2>
+            <p>Arbor Technologies operates under the strictest global security frameworks to protect your
+                infrastructure.</p>
+        </div>
+
+        <div class="compliance-grid">
+            <div *ngFor="let audit of standards" class="compliance-card">
+                <div class="audit-icon">
+                    <i [className]="audit.icon"></i>
+                </div>
+                <div class="audit-info">
+                    <h4>{{ audit.name }}</h4>
+                    <p>{{ audit.desc }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="security-banner">
+            <div class="lock-icon">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="banner-text">
+                <h3>Built on Zero-Trust Architecture</h3>
+                <p>Every deployment through Arbor Technologies undergoes an automated security audit before going live.
+                </p>
+            </div>
+            <a href="#contact" class="btn btn-secondary">Request Security Overview</a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,61 @@
+<section class="contact section" id="contact">
+  <div class="container">
+    <!-- Section Title -->
+    <div class="section-title animate-fade-in">
+      <h2>Get In Touch</h2>
+      <p>Ready to start your next project? Let's discuss how we can help transform your business</p>
+    </div>
+
+    <div class="contact-content animate-fade-in-up">
+      <!-- Contact Form -->
+      <div class="contact-form-wrapper">
+        <form class="contact-form" (submit)="onSubmit($event)">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required placeholder="John Doe">
+            <i class="fas fa-user"></i>
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company *</label>
+            <input type="text" id="company" name="company" required placeholder="Acme Corp">
+            <i class="fas fa-building"></i>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="john@example.com">
+            <i class="fas fa-envelope"></i>
+          </div>
+
+          <div class="form-group">
+            <label for="service">Service Interest</label>
+            <select id="service" name="service">
+              <option value="">Select a service</option>
+              <option value="cloud-infrastructure">Cloud Infrastructure Setup</option>
+              <option value="devops-automation">DevOps Pipeline Automation</option>
+              <option value="cost-optimization">Cloud Cost Optimization</option>
+              <option value="monitoring">Infrastructure Monitoring</option>
+              <option value="security">Security & Compliance</option>
+              <option value="database">Database Optimization</option>
+              <option value="health-check">Free Cloud Health Check</option>
+              <option value="other">Other</option>
+            </select>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Tell us about your infrastructure challenges and goals..." rows="5"></textarea>
+            <i class="fas fa-comment"></i>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg">
+            <i class="fas fa-paper-plane"></i>
+            Submit Request
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,111 @@
+<section class="architect-section" id="strategy">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">Strategy Lab</span>
+            <h2>Arbor Technologies Solution Architect</h2>
+            <p>Stop guessing. Get a custom technology roadmap for your business in 30 seconds.</p>
+        </div>
+
+        <div class="architect-card">
+            <!-- Step 1: Industry -->
+            <div *ngIf="step === 1 && !showRoadmap" class="wizard-step">
+                <h3>Step 1: Select your Industry</h3>
+                <div class="grid-options">
+                    <div *ngFor="let ind of industries" class="option-card" [class.active]="industry === ind.id"
+                        (click)="selectIndustry(ind.id)">
+                        <i [className]="ind.icon"></i>
+                        <h4>{{ ind.name }}</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Goal -->
+            <div *ngIf="step === 2 && !showRoadmap" class="wizard-step">
+                <button class="back-btn" (click)="prevStep()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <h3>Step 2: What is your primary objective?</h3>
+                <div class="grid-options wide">
+                    <div *ngFor="let goal of goals" class="option-card" [class.active]="primaryGoal === goal.id"
+                        (click)="selectGoal(goal.id)">
+                        <h4>{{ goal.name }}</h4>
+                        <p>{{ goal.desc }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Tech Readiness -->
+            <div *ngIf="step === 3 && !showRoadmap" class="wizard-step">
+                <button class="back-btn" (click)="prevStep()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <h3>Step 3: Current Technical Infrastructure</h3>
+                <div class="form-group">
+                    <select [(ngModel)]="currentInfrastructure" class="custom-select">
+                        <option value="">Choose an option...</option>
+                        <option value="legacy">Legacy On-Premise Servers</option>
+                        <option value="partial">Mixed / Partial Cloud</option>
+                        <option value="modern">Modern Cloud (AWS/Azure) - Under-optimized</option>
+                        <option value="startup">Cloud Native Startup</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary mt-4" [disabled]="!currentInfrastructure" (click)="nextStep()">
+                    Generate My Roadmap <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </button>
+            </div>
+
+            <!-- Result: The Customizable Roadmap -->
+            <div *ngIf="showRoadmap" class="roadmap-result">
+                <div class="result-header">
+                    <div class="status-indicator animate-pulse">Roadmap Generated</div>
+                    <h3>Your {{ industry | titlecase }} Transformation Path</h3>
+                </div>
+
+                <div class="roadmap-timeline">
+                    <div class="phase phase-1">
+                        <div class="phase-number">01</div>
+                        <div class="phase-content">
+                            <h4>Modernization & Efficiency</h4>
+                            <ul>
+                                <li>Infrastructure as Code (Terraform) Audit</li>
+                                <li>Cloud Cost Optimization & Rightsizing</li>
+                                <li>CI/CD Pipeline Standardization</li>
+                            </ul>
+                            <div class="time-label">Months 1-2</div>
+                        </div>
+                    </div>
+
+                    <div class="phase phase-2">
+                        <div class="phase-number">02</div>
+                        <div class="phase-content">
+                            <h4>SmartOps Automation</h4>
+                            <ul>
+                                <li>Kubernetes High-Availability Setup</li>
+                                <li>Real-time Monitoring & Alerting</li>
+                                <li>Auto-Scaling Security Protocols</li>
+                            </ul>
+                            <div class="time-label">Months 3-4</div>
+                        </div>
+                    </div>
+
+                    <div class="phase phase-3">
+                        <div class="phase-number">03</div>
+                        <div class="phase-content">
+                            <h4>AI Core Integration</h4>
+                            <ul>
+                                <li>Custom AI Model Deployment</li>
+                                <li>Predictive Anomaly Detection</li>
+                                <li>Intelligent Business Insights Engine</li>
+                            </ul>
+                            <div class="time-label">Month 6 & Beyond</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-footer no-print">
+                    <button class="btn btn-secondary" (click)="reset()">Start Again</button>
+                    <button class="btn btn-outline" (click)="downloadRoadmap()">
+                        <i class="fa-solid fa-file-pdf"></i> Save Strategy
+                    </button>
+                    <a href="#contact" class="btn btn-primary">Book Technical Audit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

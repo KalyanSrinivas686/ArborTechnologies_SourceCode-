@@ -1,0 +1,29 @@
+<div class="header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <img src="assets/arbor-logo.png" alt="Arbor Technologies" class="logo-icon">
+        <span>Arbor Technologies</span>
+      </div>
+      <nav class="nav-menu" [class.active]="isMenuOpen">
+        <a href="#home" (click)="closeMenu()">Home</a>
+        <a href="#services" (click)="closeMenu()">Services</a>
+        <a href="#cases" (click)="closeMenu()">Case Studies</a>
+        <a href="#tech-stack" (click)="closeMenu()">Tech Stack</a>
+        <a href="#contact" (click)="closeMenu()">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" (click)="toggleTheme()"
+          [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+          <i [class]="isDarkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
+        </button>
+        <a href="#free-offer" class="btn btn-gradient d-none d-md-flex">Get Started</a>
+        <div class="menu-toggle" (click)="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

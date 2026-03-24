@@ -1,0 +1,176 @@
+<div class="page-header">
+    <div class="container">
+        <h1>Engineering Triumphs</h1>
+        <p>A deep dive into the complex infrastructure challenges we've solved for the next generation of tech leaders.
+        </p>
+    </div>
+</div>
+
+<div class="container case-studies-container">
+
+    <!-- Case Study 1 -->
+    <article class="case-study-item">
+        <div class="cs-visual">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                    <span style="margin-left: 10px; color: #64748b;">root@prod-cluster-01:~#</span>
+                </div>
+                <div class="log-line"><span class="log-time">[08:15:01]</span> <span class="log-info">INFO</span>
+                    Initializing cluster scaling...</div>
+                <div class="log-line"><span class="log-time">[08:15:03]</span> <span class="log-info">INFO</span>
+                    Detected 450% traffic surge in AP-SOUTH-1</div>
+                <div class="log-line"><span class="log-time">[08:15:05]</span> <span class="log-success">SUCCESS</span>
+                    Auto-provisioned 12 additional nodes</div>
+                <div class="log-line"><span class="log-time">[08:15:08]</span> <span class="log-success">SUCCESS</span>
+                    Load balancer converged. Latency: 18ms</div>
+                <div class="log-line" style="margin-top: 10px; color: #34d399;">> Cluster Status: HEALTHY (99 pods
+                    running)</div>
+            </div>
+        </div>
+        <div class="cs-content">
+            <span class="cs-tag">FinTech High-Frequency</span>
+            <h2>Scaling Beyond Limits</h2>
+            <p class="cs-desc">
+                A rapidly growing trading platform faced critical bottlenecks during peak market hours. We re-engineered
+                their entire orchestration layer, moving to a customized EKS setup with preemptive scaling logic.
+            </p>
+            <div class="cs-stats">
+                <div class="stat">
+                    <h4>99.999%</h4>
+                    <span>Uptime</span>
+                </div>
+                <div class="stat">
+                    <h4>35%</h4>
+                    <span>Cost ROI</span>
+                </div>
+                <div class="stat">
+                    <h4>
+                        < 20ms</h4>
+                            <span>Latency</span>
+                </div>
+            </div>
+            <div class="tech-tags">
+                <span class="tech-tag">Kubernetes</span>
+                <span class="tech-tag">AWS EKS</span>
+                <span class="tech-tag">Terraform</span>
+                <span class="tech-tag">Prometheus</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- Case Study 2 -->
+    <article class="case-study-item">
+        <div class="cs-visual">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                    <span style="margin-left: 10px; color: #64748b;">audit@secure-vault:~#</span>
+                </div>
+                <div class="log-line"><span class="log-time">[14:20:10]</span> <span class="log-info">INFO</span>
+                    Scanning network for HIPAA compliance...</div>
+                <div class="log-line"><span class="log-time">[14:20:15]</span> <span class="log-success">PASSED</span>
+                    Data encryption at rest: AES-256</div>
+                <div class="log-line"><span class="log-time">[14:20:18]</span> <span class="log-success">PASSED</span>
+                    Zero-trust identity verification active</div>
+                <div class="log-line"><span class="log-time">[14:20:25]</span> <span class="log-info">INFO</span>
+                    Automated audit log transmission complete</div>
+                <div class="log-line" style="margin-top: 10px; color: #fbbf24;">> Compliance Score: 100/100</div>
+            </div>
+        </div>
+        <div class="cs-content">
+            <span class="cs-tag">HealthTech Infrastructure</span>
+            <h2>Zero-Trust Architecture</h2>
+            <p class="cs-desc">
+                Moving sensitive healthcare data to the cloud required a security-first approach. We implemented a
+                strictly isolated zero-trust environment with automated compliance guardrails and real-time threat
+                detection.
+            </p>
+            <div class="cs-stats">
+                <div class="stat">
+                    <h4>SOC-2</h4>
+                    <span>Ready</span>
+                </div>
+                <div class="stat">
+                    <h4>100%</h4>
+                    <span>Encryption</span>
+                </div>
+                <div class="stat">
+                    <h4>Zero</h4>
+                    <span>Vulnerabilities</span>
+                </div>
+            </div>
+            <div class="tech-tags">
+                <span class="tech-tag">AWS GuardDuty</span>
+                <span class="tech-tag">VPC Peering</span>
+                <span class="tech-tag">Vault</span>
+                <span class="tech-tag">KMS</span>
+            </div>
+        </div>
+    </article>
+
+    <!-- Case Study 3 -->
+    <article class="case-study-item">
+        <div class="cs-visual">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                    <span style="margin-left: 10px; color: #64748b;">deploy@ci-cd-runner:~#</span>
+                </div>
+                <div class="log-line"><span class="log-time">[11:00:00]</span> <span class="log-info">INFO</span>
+                    Triggering production release: v4.2.0</div>
+                <div class="log-line"><span class="log-time">[11:00:05]</span> <span class="log-info">INFO</span>
+                    Starting Blue/Green cutover...</div>
+                <div class="log-line"><span class="log-time">[11:00:15]</span> <span class="log-success">SUCCESS</span>
+                    Traffic shifted to Green environment</div>
+                <div class="log-line"><span class="log-time">[11:00:20]</span> <span class="log-success">SUCCESS</span>
+                    Smoke tests passed. Rollback auto-disabled.</div>
+                <div class="log-line" style="margin-top: 10px; color: #a5b4fc;">> Deployment complete with 0 dropped
+                    packets.</div>
+            </div>
+        </div>
+        <div class="cs-content">
+            <span class="cs-tag">Global E-Commerce</span>
+            <h2>Continuous Deployment Mastery</h2>
+            <p class="cs-desc">
+                Struggling with slow, manual releases, this client needed a robust CI/CD engine. We implemented an
+                ArgoCD-based gitops workflow, allowing their dev team to push code to production 10x faster.
+            </p>
+            <div class="cs-stats">
+                <div class="stat">
+                    <h4>10x</h4>
+                    <span>Frequency</span>
+                </div>
+                <div class="stat">
+                    <h4>
+                        < 5 Min</h4>
+                            <span>Lead Time</span>
+                </div>
+                <div class="stat">
+                    <h4>99.9%</h4>
+                    <span>Test Coverage</span>
+                </div>
+            </div>
+            <div class="tech-tags">
+                <span class="tech-tag">ArgoCD</span>
+                <span class="tech-tag">GitHub Actions</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">Helm</span>
+            </div>
+        </div>
+    </article>
+
+</div>
+
+<section class="cta-section">
+    <div class="container">
+        <h2>Ready to architect your success story?</h2>
+        <a routerLink="/contact" class="btn btn-primary btn-lg">Initiate Consultation</a>
+    </div>
+</section>

@@ -1,0 +1,16 @@
+<div class="cookie-banner" *ngIf="isVisible">
+    <div class="container">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <i class="fa-solid fa-cookie-bite"></i>
+                <p>We use AI-driven analysis and cookies to optimize your experience on the Arbor Technologies platform.
+                    By
+                    continuing, you agree to our <a href="#">Security & Privacy Policy</a>.</p>
+            </div>
+            <div class="cookie-actions">
+                <button class="btn-micro secondary" (click)="isVisible = false">Decline</button>
+                <button class="btn-micro" (click)="accept()">Accept All</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,348 @@
+<section class="sudasko-section" id="sudasko-poc">
+    <!-- Toast Notification for real-time events -->
+    <div class="tx-toast" [class.show]="showToast">
+        <i class="fas fa-check-circle"></i> {{ lastTxMessage }}
+    </div>
+
+    <!-- Navigation -->
+    <a href="/" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+    <div class="bg-glow"></div>
+
+    <!-- MAIN DASHBOARD VIEW -->
+    <div class="sudasko-container" *ngIf="!isPaymentMode">
+        <!-- LEFT SIDE: INFO & CONTROLS -->
+        <div class="content-info">
+            <h2>MealOps <br><span>Universal Pay</span></h2>
+            <p>Your ultimate digital identity for payments. Accepted at food courts, premium restaurants, co-working
+                spaces, and retail outlets worldwide.</p>
+
+            <!-- Profile Switcher -->
+            <div class="profile-switcher" style="margin-bottom: 30px;">
+                <p style="color: #777; font-size: 0.9rem; margin-bottom: 10px;">Switch Demo Profile:</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button *ngFor="let p of profiles" (click)="switchProfile(p.name)"
+                        [style.background]="currentProfile === p.name ? '#a8ff78' : 'rgba(255,255,255,0.05)'"
+                        [style.color]="currentProfile === p.name ? '#000' : '#fff'"
+                        style="border: 1px solid rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; cursor: pointer; transition: all 0.3s; font-size: 0.8rem; font-weight: 600;">
+                        {{ p.name }}
+                    </button>
+                </div>
+            </div>
+
+            <div
+                style="margin-bottom: 20px; font-size: 0.8rem; background: rgba(168, 255, 120, 0.1); padding: 20px; border-radius: 15px; border: 1px solid rgba(168, 255, 120, 0.2); line-height: 1.6;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                    <i class="fas fa-globe-americas" style="color: #a8ff78; font-size: 1.2rem;"></i>
+                    <strong style="color: #fff;">Universal Acceptance</strong>
+                </div>
+                Supported at <strong>50,000+</strong> merchants including WeWork, Starbucks, Shell, and major retail
+                chains. Seamlessly integrated for modern workspaces.
+                <br><br>
+                <a [href]="qrUrl" target="_blank"
+                    style="color: #a8ff78; text-decoration: none; font-weight: 700; background: rgba(168, 255, 120, 0.15); padding: 5px 10px; border-radius: 5px;">
+                    <i class="fas fa-store"></i> Test Universal Scan
+                </a>
+            </div>
+
+            <a href="/sudasko" target="_blank" class="scan-btn"
+                style="display:inline-block; margin-bottom: 30px; text-decoration: none; text-align: center; width: auto; padding: 12px 25px;">
+                Open Full POC <i class="fas fa-expand"></i>
+            </a>
+        </div>
+
+        <!-- RIGHT SIDE: MODERN APP MOCKUP -->
+        <div class="app-mockup">
+            <div class="phone-frame">
+                <div class="app-screen">
+                    <!-- App Header -->
+                    <div class="app-header">
+                        <div class="brand">MealOps<span>.</span></div>
+                        <div style="font-size: 0.7rem; color: #a8ff78; opacity: 0.8;">{{ currentProfile }}</div>
+                        <div class="notifications"><i class="far fa-bell"></i></div>
+                    </div>
+
+                    <!-- Pass Area -->
+                    <div class="digital-pass">
+                        <div class="qr-code" style="margin-bottom: 25px;">
+                            <!-- MOBILE SCAN: Scanning from a real phone triggers UPI -->
+                            <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=arbor.ops@icici&pn=MealOps%20Wallet&cu=INR'"
+                                alt="QR Code" style="border-radius: 10px;">
+                        </div>
+
+                        <!-- Dual Balance Cockpit -->
+                        <div class="dual-balances" style="display: flex; gap: 12px; margin-bottom: 15px;">
+                            <div class="balance-card" (click)="selectMethod('mealops')"
+                                [style.border-color]="selectedMethod === 'mealops' ? '#a8ff78' : 'rgba(255,255,255,0.1)'"
+                                style="flex: 1; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 15px; border: 2px solid transparent; cursor: pointer; transition: all 0.3s; text-align: center;">
+                                <div
+                                    style="font-size: 0.55rem; color: #777; text-transform: uppercase; margin-bottom: 4px;">
+                                    MealOps Balance</div>
+                                <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">
+                                    ₹{{ currentBalance === 0 ? '0' : (currentBalance | number:'1.2-2') }}
+                                </div>
+                            </div>
+                            <div class="balance-card" (click)="selectMethod('gpay')"
+                                [style.border-color]="selectedMethod !== 'mealops' ? '#a8ff78' : 'rgba(255,255,255,0.1)'"
+                                style="flex: 1; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 15px; border: 2px solid transparent; cursor: pointer; transition: all 0.3s; text-align: center;">
+                                <div
+                                    style="font-size: 0.55rem; color: #777; text-transform: uppercase; margin-bottom: 4px;">
+                                    Bank/UPI</div>
+                                <div style="font-size: 0.9rem; font-weight: 700; color: #fff;">
+                                    ₹{{ bankBalance === 0 ? '0' : (bankBalance | number:'1.2-2') }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ACTION BUTTONS -->
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                            <button (click)="openTopUp()"
+                                style="flex: 1; background: rgba(168, 255, 120, 0.1); border: 1px solid rgba(168, 255, 120, 0.3); color: #a8ff78; padding: 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: 0.3s;">
+                                <i class="fas fa-plus-circle"></i> Add Funds
+                            </button>
+                            <button
+                                style="flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: 0.3s;">
+                                <i class="fas fa-history"></i> Report
+                            </button>
+                        </div>
+
+                        <div
+                            style="font-size: 0.65rem; color: #a8ff78; margin-bottom: 10px; text-align: center; opacity: 0.9; background: rgba(168, 255, 120, 0.05); padding: 5px; border-radius: 8px;">
+                            <i class="fas fa-shield-alt"></i> Active Source: <strong>{{ selectedMethod.toUpperCase()
+                                }}</strong>
+                        </div>
+                    </div>
+
+                    <!-- Transactions List -->
+                    <div class="transactions">
+                        <h4>Activity Log</h4>
+                        <div class="transaction-list" style="max-height: 180px; overflow-y: auto; margin-bottom: 20px;">
+                            <div *ngFor="let tx of transactions" class="tx-item">
+                                <div class="tx-info">
+                                    <div class="tx-icon"><i class="fas" [ngClass]="tx.icon"></i></div>
+                                    <div>
+                                        <div class="tx-name">{{ tx.name }}</div>
+                                        <div class="tx-date">
+                                            {{ tx.date }}<span style="opacity: 0.5; margin: 0 4px;">•</span><span
+                                                style="opacity: 0.8; font-weight: 600;">{{ tx.source }}</span>
+                                        </div>
+                                        <div *ngIf="tx.utr"
+                                            style="font-size: 0.55rem; color: #555; font-family: monospace; margin-top: 2px;">
+                                            UTR: {{ tx.utr }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="tx-amount"
+                                        [ngClass]="{'negative': tx.type === 'debit', 'positive': tx.type === 'credit'}">
+                                        {{ tx.type === 'credit' ? '+' : '' }}₹{{ tx.amount === 0 ? '0' : (tx.amount |
+                                        number:'1.2-2') }}
+                                    </div>
+                                    <div
+                                        style="font-size: 0.5rem; color: #10b981; font-weight: 700; text-transform: uppercase;">
+                                        <i class="fas fa-check-circle"></i> Success
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scan Button -->
+                        <button class="scan-btn" (click)="scanToPay()" [disabled]="isScanning"
+                            style="width: 100%; border-radius: 15px;">
+                            <i class="fas" [ngClass]="isScanning ? 'fa-spinner fa-spin' : 'fa-qrcode'"></i>
+                            {{ isScanning ? 'Processing...' : 'Quick Scan Pay' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOP-UP MODAL OVERLAY -->
+    <div class="topup-overlay" *ngIf="showTopUp"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;">
+        <div class="topup-card"
+            style="background: #111; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; width: 100%; max-width: 400px; padding: 30px; position: relative;">
+            <button (click)="closeTopUp()"
+                style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: #777; font-size: 1.2rem; cursor: pointer;"><i
+                    class="fas fa-times"></i></button>
+
+            <div *ngIf="topUpStep === 'input'">
+                <h3 style="color: #fff; margin-bottom: 10px;">Load MealOps Wallet</h3>
+                <p style="color: #777; font-size: 0.85rem; margin-bottom: 25px;">Transfer funds from your bank account
+                    via UPI</p>
+
+                <div
+                    style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(168, 255, 120, 0.2);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                        <span style="color: #777; font-size: 0.8rem;">Available Bank Balance</span>
+                        <span style="color: #fff; font-size: 0.8rem; font-weight: 600;">₹{{ bankBalance | number:'1.2-2'
+                            }}</span>
+                    </div>
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <span
+                            style="position: absolute; left: 15px; color: #a8ff78; font-weight: 700; font-size: 1.2rem;">₹</span>
+                        <input type="number" [(ngModel)]="topUpAmount" placeholder="Enter amount"
+                            style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 15px 15px 15px 35px; border-radius: 12px; color: #fff; font-size: 1.1rem; outline: none; transition: border-color 0.3s;">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 25px;">
+                    <button *ngFor="let amt of [500, 1000, 2000]" (click)="topUpAmount = amt"
+                        style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 8px; border-radius: 10px; font-size: 0.8rem; cursor: pointer;">+₹{{
+                        amt }}</button>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <p style="color: #777; font-size: 0.8rem; margin-bottom: 10px;">Secure UPI Method:</p>
+                    <div style="display: flex; gap: 10px;">
+                        <div class="upi-mini-btn" (click)="setTopUpUPI('gpay')"
+                            [style.background]="selectedTopUpApp === 'gpay' ? 'rgba(66, 133, 244, 0.1)' : 'transparent'"
+                            [style.border-color]="selectedTopUpApp === 'gpay' ? '#4285F4' : 'rgba(255,255,255,0.1)'"
+                            style="flex: 1; border: 1px solid; padding: 10px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.3s;">
+                            <i class="fab fa-google-pay" style="color: #4285F4; font-size: 1.2rem;"></i>
+                        </div>
+                        <div class="upi-mini-btn" (click)="setTopUpUPI('phonepe')"
+                            [style.background]="selectedTopUpApp === 'phonepe' ? 'rgba(95, 37, 159, 0.1)' : 'transparent'"
+                            [style.border-color]="selectedTopUpApp === 'phonepe' ? '#5F259F' : 'rgba(255,255,255,0.1)'"
+                            style="flex: 1; border: 1px solid; padding: 10px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.3s;">
+                            <i class="fas fa-mobile-alt" style="color: #5F259F; font-size: 1.2rem;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="scan-btn" (click)="executeTopUp()" [disabled]="!topUpAmount"
+                    style="width: 100%; padding: 18px; border-radius: 15px; font-weight: 700;">
+                    Confirm Top-Up
+                </button>
+            </div>
+
+            <div *ngIf="topUpStep === 'processing'" style="padding: 40px 0; text-align: center;">
+                <i class="fas fa-circle-notch fa-spin"
+                    style="font-size: 4rem; color: #a8ff78; margin-bottom: 25px;"></i>
+                <h3 style="color: #fff;">Authorizing via UPI</h3>
+                <p style="color: #777; font-size: 0.9rem;">Waiting for your mobile app confirmation...</p>
+            </div>
+
+            <div *ngIf="topUpStep === 'success'" style="padding: 20px 0; text-align: center;">
+                <div
+                    style="width: 70px; height: 70px; background: #a8ff78; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 0 30px rgba(168, 255, 120, 0.4);">
+                    <i class="fas fa-check" style="color: #000; font-size: 2.2rem;"></i>
+                </div>
+                <h3 style="color: #fff; margin-bottom: 10px;">Successfully Funded!</h3>
+                <p style="color: #a8ff78; font-size: 2rem; font-weight: 800; margin-bottom: 30px;">₹{{ topUpAmount |
+                    number:'1.2-2' }}</p>
+                <button (click)="closeTopUp()"
+                    style="width: 100%; background: #fff; color: #000; border: none; padding: 15px; border-radius: 15px; font-weight: 700; cursor: pointer;">Back
+                    to Wallet</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MERCHANT PAYMENT SCREEN (Triggered by QR Scan) -->
+    <div class="sudasko-container payment-mode" *ngIf="isPaymentMode"
+        style="justify-content: center; min-height: 80vh;">
+        <div class="payment-card"
+            style="background: rgba(255,255,255,0.03); backdrop-filter: blur(40px); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 40px; width: 100%; max-width: 480px; text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.5);">
+
+            <!-- STEP 1: INPUT AMOUNT & SELECT UPI -->
+            <div *ngIf="paymentStep === 'input'">
+                <div class="brand" style="font-size: 2.22rem; margin-bottom: 10px; color: #fff; font-weight: 800;">
+                    MealOps<span>.</span> Pay</div>
+                <p style="color: #777; margin-bottom: 40px; font-size: 0.9rem;">Securing your dining experience</p>
+
+                <div style="margin-bottom: 30px;">
+                    <div
+                        style="width: 60px; height: 60px; background: rgba(168, 255, 120, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; border: 1px solid rgba(168, 255, 120, 0.2);">
+                        <i class="fas fa-map-marker-alt" style="color: #a8ff78; font-size: 1.5rem;"></i>
+                    </div>
+                    <p
+                        style="color: #777; margin-bottom: 5px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
+                        Universal Terminal</p>
+                    <h3 style="margin: 0; color: #fff; font-size: 1.5rem;">Ready to Pay</h3>
+                </div>
+
+                <div class="amount-input"
+                    style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 25px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="font-size: 1.8rem; color: #a8ff78; font-weight: 700;">₹</span>
+                    <input type="number" [(ngModel)]="payAmount" autofocus placeholder="0.00"
+                        style="background: transparent; border: none; color: #fff; font-size: 3rem; font-weight: 800; width: 80%; outline: none; text-align: center; margin-left: 10px;">
+                </div>
+
+                <p style="color: #777; font-size: 0.85rem; margin-bottom: 20px; text-align: left;">Select Payment
+                    Source:
+                </p>
+                <div class="upi-selector"
+                    style="display: flex; justify-content: space-around; gap: 12px; margin-bottom: 40px;">
+                    <div (click)="selectMethod('gpay')" [class.active]="selectedMethod === 'gpay'"
+                        [style.border-color]="selectedMethod === 'gpay' ? '#4285F4' : 'transparent'"
+                        style="padding: 15px 10px; border-radius: 12px; cursor: pointer; transition: all 0.3s; flex: 1; border: 2px solid transparent; background: rgba(255,255,255,0.05);">
+                        <i class="fab fa-google-pay" style="font-size: 2.22rem; color: #4285F4;"></i>
+                        <p style="font-size: 0.65rem; margin-top: 8px; color: #fff; font-weight: 600;">GPay</p>
+                    </div>
+                    <div (click)="selectMethod('phonepe')" [class.active]="selectedMethod === 'phonepe'"
+                        [style.border-color]="selectedMethod === 'phonepe' ? '#5F259F' : 'transparent'"
+                        style="padding: 15px 10px; border-radius: 12px; cursor: pointer; transition: all 0.3s; flex: 1; border: 2px solid transparent; background: rgba(255,255,255,0.05);">
+                        <i class="fas fa-mobile-alt" style="font-size: 2.22rem; color: #5F259F;"></i>
+                        <p style="font-size: 0.65rem; margin-top: 8px; color: #fff; font-weight: 600;">PhonePe</p>
+                    </div>
+                    <div (click)="selectMethod('mealops')" [class.active]="selectedMethod === 'mealops'"
+                        [style.border-color]="selectedMethod === 'mealops' ? '#a8ff78' : 'transparent'"
+                        style="padding: 15px 10px; border-radius: 12px; cursor: pointer; transition: all 0.3s; flex: 1; border: 2px solid transparent; background: rgba(168, 255, 120, 0.05);">
+                        <i class="fas fa-wallet" style="font-size: 2.22rem; color: #a8ff78;"></i>
+                        <p style="font-size: 0.65rem; margin-top: 8px; color: #fff; font-weight: 600;">MealOps</p>
+                    </div>
+                </div>
+
+                <button class="scan-btn" (click)="processUPIPayment()" [disabled]="!payAmount"
+                    style="width: 100%; padding: 22px; font-size: 1.2rem; font-weight: 700; border-radius: 20px; box-shadow: 0 15px 35px rgba(168, 255, 120, 0.3);">
+                    Pay Securely ₹{{ payAmount | number:'1.2-2' }}
+                </button>
+            </div>
+
+            <!-- STEP 2: PROCESSING ANIMATION -->
+            <div *ngIf="paymentStep === 'processing'" style="padding: 60px 0;">
+                <div class="loader-container"
+                    style="position: relative; width: 120px; height: 120px; margin: 0 auto 40px;">
+                    <i class="fas fa-circle-notch fa-spin" style="font-size: 6rem; color: #a8ff78;"></i>
+                    <i class="fas fa-shield-alt"
+                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 2rem;"></i>
+                </div>
+                <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 10px;">Verifying Session...</h3>
+                <p style="color: #777; font-size: 1rem;">Connecting to Secure Gateway</p>
+            </div>
+
+            <!-- STEP 3: SUCCESS CONFIRMATION -->
+            <div *ngIf="paymentStep === 'success'" style="padding: 40px 0;">
+                <div class="success-icon"
+                    style="width: 100px; height: 100px; background: #a8ff78; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; box-shadow: 0 0 50px rgba(168, 255, 120, 0.5);">
+                    <i class="fas fa-check" style="font-size: 3.5rem; color: #000;"></i>
+                </div>
+                <h2 style="color: #fff; margin-bottom: 15px; font-size: 2.21rem;">Payment Sent!</h2>
+                <p style="color: #a8ff78; font-size: 3rem; font-weight: 800; margin-bottom: 40px;">₹{{ payAmount |
+                    number:'1.2-2' }}</p>
+
+                <div
+                    style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 25px; text-align: left; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.05);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="color: #777; font-size: 0.85rem;">Status</span>
+                        <span style="color: #a8ff78; font-size: 0.85rem; font-weight: 700;">Completed</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="color: #777; font-size: 0.85rem;">Receiver</span>
+                        <span style="color: #fff; font-size: 0.85rem; font-weight: 600;">{{ currentProfile }}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #777; font-size: 0.85rem;">Transaction ID</span>
+                        <span style="color: #fff; font-size: 0.85rem; font-family: monospace;">MO982736412025</span>
+                    </div>
+                </div>
+
+                <button (click)="paymentStep = 'input'; payAmount = 0; isPaymentMode = false"
+                    style="background: #fff; color: #000; border: none; padding: 15px 40px; border-radius: 15px; cursor: pointer; font-weight: 700; width: 100%;">
+                    Back to Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

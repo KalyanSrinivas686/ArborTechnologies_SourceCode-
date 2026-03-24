@@ -1,0 +1,33 @@
+<section class="assessment-section" id="assessment">
+    <div class="container">
+        <div class="assessment-card">
+            <div *ngIf="!showResult" class="assessment-content">
+                <div class="progress-bar">
+                    <div class="progress" [style.width.%]="((currentStep + 1) / questions.length) * 100"></div>
+                </div>
+                <span class="step-counter">Question {{ currentStep + 1 }} of {{ questions.length }}</span>
+                <h2>{{ questions[currentStep].text }}</h2>
+                <div class="options-list">
+                    <button *ngFor="let opt of questions[currentStep].options" class="option-btn"
+                        (click)="selectOption(opt.score)">
+                        {{ opt.text }}
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div *ngIf="showResult" class="result-content text-center animate-fade-in">
+                <div class="result-icon">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <span class="badge">Your Result</span>
+                <h2>{{ resultTitle }}</h2>
+                <p class="result-desc">{{ resultDesc }}</p>
+                <div class="action-buttons">
+                    <a href="#contact" class="btn btn-primary">Get Expert Roadmap</a>
+                    <button class="btn btn-outline" (click)="reset()">Try Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,67 @@
+<section class="realtime-api-health section" id="realtime-api-health">
+    <div class="container">
+        <div class="section-header">
+            <div class="badge">LIVE MONITORING</div>
+            <h2>Real-Time API Health Checker</h2>
+            <p class="section-subtitle">Live monitoring of actual API endpoints - Testing real connections every 15 seconds</p>
+        </div>
+
+        <div class="endpoints-grid">
+            <div *ngFor="let endpoint of endpoints" class="endpoint-card" [class]="'status-' + endpoint.status">
+                <div class="endpoint-header">
+                    <div class="endpoint-name">
+                        <i [class]="'fa-solid ' + getStatusIcon(endpoint.status)" 
+                           [style.color]="getStatusColor(endpoint.status)"></i>
+                        <h3>{{ endpoint.name }}</h3>
+                    </div>
+                    <span class="status-badge" [style.background-color]="getStatusColor(endpoint.status)">
+                        {{ endpoint.status.toUpperCase() }}
+                    </span>
+                </div>
+                
+                <div class="endpoint-url">
+                    <i class="fa-solid fa-link"></i>
+                    <span>{{ endpoint.url }}</span>
+                </div>
+
+                <div class="endpoint-metrics">
+                    <div class="metric" *ngIf="endpoint.responseTime > 0">
+                        <i class="fa-solid fa-clock"></i>
+                        <span class="label">Response Time:</span>
+                        <span class="value">{{ endpoint.responseTime }}ms</span>
+                    </div>
+                    <div class="metric" *ngIf="endpoint.statusCode">
+                        <i class="fa-solid fa-code"></i>
+                        <span class="label">Status Code:</span>
+                        <span class="value">{{ endpoint.statusCode }}</span>
+                    </div>
+                    <div class="metric" *ngIf="endpoint.lastChecked">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span class="label">Last Checked:</span>
+                        <span class="value">{{ endpoint.lastChecked | date:'short' }}</span>
+                    </div>
+                </div>
+
+                <div class="endpoint-error" *ngIf="endpoint.error">
+                    <i class="fa-solid fa-exclamation-triangle"></i>
+                    <span>{{ endpoint.error }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-stats">
+            <div class="stat">
+                <div class="stat-value">{{ getOnlineCount() }}</div>
+                <div class="stat-label">Online</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">{{ getSlowCount() }}</div>
+                <div class="stat-label">Slow</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">{{ getOfflineCount() }}</div>
+                <div class="stat-label">Offline</div>
+            </div>
+        </div>
+    </div>
+</section>

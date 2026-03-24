@@ -1,0 +1,18 @@
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-bar">
+            <div class="newsletter-text">
+                <h3>Stay Ahead of the Curve</h3>
+                <p>Get our quarterly "Cloud State" report delivered to your inbox.</p>
+            </div>
+            <div class="newsletter-form" *ngIf="!subscribed">
+                <input type="email" [(ngModel)]="email" placeholder="Enter your business email" class="minimal-input">
+                <button (click)="subscribe()" class="minimal-btn">Subscribe <i
+                        class="fa-solid fa-paper-plane"></i></button>
+            </div>
+            <div class="success-msg" *ngIf="subscribed">
+                <i class="fa-solid fa-circle-check"></i> Welcome to the Inner Circle.
+            </div>
+        </div>
+    </div>
+</section>

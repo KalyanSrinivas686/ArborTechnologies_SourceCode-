@@ -1,0 +1,26 @@
+<section class="journey-section" id="journey">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="badge">The Roadmap to ROI</span>
+            <h2>Your First 90 Days with Arbor Technologies</h2>
+            <p>A structured, predictable path to architectural excellence and cost efficiency.</p>
+        </div>
+
+        <div class="journey-timeline">
+            <div *ngFor="let step of steps; let i = index" class="journey-item">
+                <div class="day-marker">Day {{ step.day }}</div>
+                <div class="step-card card">
+                    <div class="step-icon">
+                        <i [className]="step.icon"></i>
+                    </div>
+                    <div class="step-content">
+                        <h3>{{ step.title }}</h3>
+                        <p>{{ step.desc }}</p>
+                    </div>
+                </div>
+                <!-- Progress Line -->
+                <div class="connector" *ngIf="i < steps.length - 1"></div>
+            </div>
+        </div>
+    </div>
+</section>
